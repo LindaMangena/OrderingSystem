@@ -1,0 +1,58 @@
+<div>
+<form id = "form" role= "search" class="search-bar" >
+    <div class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Order History" name="senderEmail" [(ngModel)]="senderEmail" aria-label="Search">
+      <button class="btn btn-outline-info btn-sm my-2 my-sm-0" type="submit" (click)="getOrderByEmail(senderEmail)">Search</button>
+    </div>
+  </form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Date Placed</th>
+            <th>Order Item</th>
+            <th>Voucher Price</th>
+            <th>Sender Name</th>
+            <th>Sender Email</th>
+            <th>Recipient Name</th>
+            <th>Recipient Surname</th>
+            <th>Recipient Email</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <ng-container *ngFor="let order of orders">
+            <tr>
+                <td>{{order.id}}</td>
+                <td>{{order.placedOn}}</td>
+                <td>{{order.item}}</td>
+                <td>R{{order.price}}</td>
+                <td>{{order.senderName}}</td>
+                <td>{{order.senderEmail}}</td>
+                <td>{{order.recipientName}}</td>
+                <td>{{order.recipientSurname}}</td>
+                <td>{{order.recipientEmail}}</td>
+
+
+            </tr>
+        </ng-container>
+
+        <!-- <ng-container *ngIf = "orders?.data.Count <= 0">
+            <tr>
+                <td class="error-text" colspan="5">Error no orders found</td>
+            </tr>    
+           
+        </ng-container> -->
+
+    </tbody>
+</table>
+
+<ng-container *ngIf = "loading == false && orders?.length == 0 && userSearched == true"> 
+    <div class="alert alert-danger"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Sorry!</strong> No order linked to <strong>{{senderEmail}}</strong> was found !!! 
+     </div>
+     <div class="alert alert-info alert-dismissible" onClick="window.location='view-orders.component.html';"> <strong>Info! </strong> You should <a href="http://localhost:4200/home" class="alert-link">click here to place an order</a>. 
+     </div> 
+    </ng-container>
+</div>

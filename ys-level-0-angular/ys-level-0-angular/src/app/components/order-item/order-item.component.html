@@ -1,0 +1,77 @@
+<!-- main app container -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h3>Place Order</h3>
+        <form #f="ngForm" (ngSubmit)="submit(f)">
+          <div class="form-group">
+            <label for="Item ">Item Name</label>
+            <input required ngModel #Item="ngModel" name="Item" id="Item" type="text" [(ngModel)]="item"
+              class="form-control" readonly />
+          </div>
+          <div class="form-group">
+            <label for="price">Item price</label>
+            <input required ngModel #price="ngModel" name="price" id="price" type="text" [(ngModel)]="iprice"
+              class="form-control" readonly />
+          </div>
+          <div class="form-group">
+
+            <label for="sname">Name</label>
+            <input required ngModel #SenderName="ngModel" name="SenderName" id="sname" type="text"
+              class="form-control" />
+            <div class="alert alert-danger" *ngIf="SenderName.touched && !SenderName.valid">
+              Sender name is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="SenderEmail">Email</label>
+            <input ngModel #emailref="ngModel" name="SenderEmail" type="SenderEmail" class="form-control" id="SenderEmail" required   pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"
+             />
+             <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="alert alert-danger">
+              <div [hidden]="!emailref.errors?.pattern">
+                Invalid pattern
+              </div> 
+             </div>
+             <div class="alert alert-danger" *ngIf="emailref.touched&& !emailref.valid">
+              email is required
+             </div>
+          </div>
+          <div class="form-group">
+
+            <label for="RecipientName">Recipient Name</label>
+            <input required ngModel #RecipientName="ngModel" name="RecipientName" id="RecipientName" type="text"
+              class="form-control" />
+            <div class="alert alert-danger" *ngIf="RecipientName.touched && !RecipientName.valid">
+              Sender RecipientName is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="RecipientEmail">Receipient Email</label>
+            <input ngModel #emailre="ngModel" name="RecipientEmail" type="RecipientEmail" class="form-control" id="RecipientEmail"  required   pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"/>
+            <div *ngIf="emailre.errors &&(emailre.touched || emailre.dirty)"  class ="alert alert-danger">
+              <div>
+                Invalid pattern 
+              </div> 
+             </div>
+             <div class="alert alert-danger" *ngIf="emailre.touched&& !emailre.valid">
+             email is required
+            </div>
+          </div>
+
+          <div class="form-group">
+
+            <label for="remail">Recipient Surname</label>
+            <input required ngModel #SenderName="ngModel" name="RecipientSurname" id="sname" type="text"
+              class="form-control" />
+            <div class="alert alert-danger" *ngIf="RecipientSurname.touched && !RecipientSurname.valid">
+              Sender name is required
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

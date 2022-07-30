@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div *ngFor="let item of items" class="card" style="width: 18rem;">
+        <img src={{item.image}} class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">{{item.price}}</p>
+            <button type="button" class="btn btn-light" (click)="btnClick(item)">order</button>
+        </div>
+    </div>
+</div>
+
